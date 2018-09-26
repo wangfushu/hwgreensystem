@@ -1,0 +1,153 @@
+/* global */
+
+a{ color:Black; text-decoration:none;}
+a:hover{ color:#0040D1; text-decoration:none;}
+
+a.msg{ color:Red; text-decoration:none;}
+a.msg:hover{ color:#0040D1; text-decoration:none;}
+
+th, td {border-color: #999;}
+
+table.noborder th, table.noborder td {border: none;}
+
+.error,.success    { padding: 0em; margin-bottom: 0em; margin-top: 0em; border: 1px solid #ddd; }
+.error      { background: #FBE3E4; color: #8a1f11; border-color: #FBC2C4; width:150px; height:21px;}
+.error label { background: blue; color: #8a1f11; border-color: #FBC2C4; width:150px; height:21px;}
+.success    { background: #E6EFC2; color: #264409; border-color: #C6D880; }
+.error a    { color: #8a1f11; }
+.success a  { color: #264409; }
+/* 该句导致树变形 树也引用了img样式
+input,img,a,select{vertical-align:middle;}
+input,a,select{vertical-align:middle;}
+*/
+
+/* form */
+input[type=text], input[type=password], textarea, select {
+  background-color:#fff;
+  border:1px solid #bbb;
+  padding:2px;
+  margin:0;
+	padding:0 1px;
+	border: 1px solid #476c9e;
+	
+}
+
+input[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus {
+  border-color:#666;
+  font-size:12px;
+	margin:0;
+	padding:0 1px;
+	border: 1px solid #476c9e;
+}
+
+/* header */
+#title h1 {
+	font-size: 153.9%;
+	letter-spacing: .1em;
+	margin:0.5em  0;
+}
+
+#title h2 {
+	color: #999;
+	letter-spacing: .1em;
+	margin:0.5em 0;
+}
+
+#menu ul {
+	margin:0 0 0 0;
+	padding: 0.5em;
+	font-weight: bold;
+	background: #BACE87;
+	border-top: 2px solid #658A16;
+	border-bottom: 2px solid #658A16;
+}
+
+#menu li {display: inline;}
+
+body
+{
+	background-color: #fff;
+	scroll: auto;
+	margin: 0px;
+	border: none;
+	overflow: auto;
+	FONT-SIZE: 12px;
+}
+table{
+	FONT-SIZE: 12px;
+	
+}
+
+#menu ul a {
+	padding: 0.5em;
+	text-decoration: none;
+	color: #fff;
+}
+
+#menu a:hover {background: #658A16;}
+
+/* body */
+#filter {margin-top:1em;}
+
+/* footer */
+#ft {
+	margin-top: 15px;
+	padding: 15px 0px 0px 0px;
+	font-size: 95%;
+	text-align: center;
+	border-top: 2px solid #658A16;
+}
+
+#ft a {color: #999;}
+
+.float{
+    BORDER-RIGHT: #7b9ebd 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #7b9ebd 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; BORDER-LEFT: #7b9ebd 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #7b9ebd 1px solid;
+	ime-Mode:disabled;
+	behavior: url(../../behaviors/float.htc);
+	background-color: #EBEBEB;
+}
+.positiveFloat{
+    BORDER-RIGHT: #7b9ebd 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #7b9ebd 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; BORDER-LEFT: #7b9ebd 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #7b9ebd 1px solid;
+    ime-Mode:disabled;
+	behavior: url(../../behaviors/positiveFloat.htc);
+	background-color: #EBEBEB;
+}
+.number{
+    BORDER-RIGHT: #7b9ebd 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #7b9ebd 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; BORDER-LEFT: #7b9ebd 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #7b9ebd 1px solid;
+	ime-Mode:disabled;
+	behavior: url(../../behaviors/number.htc);
+	background-color: #EBEBEB;
+}
+.positiveNumber{
+    BORDER-RIGHT: #7b9ebd 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #7b9ebd 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; BORDER-LEFT: #7b9ebd 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #7b9ebd 1px solid;
+	ime-Mode:disabled;
+	behavior: url(../../behaviors/positiveNumber.htc);
+	background-color: #EBEBEB;
+}
+
+
+.inputButton{
+	color: black;
+	height:21px;
+	background-color: #fff;
+	background-image: url(../../images/bg_button.gif);
+	background-repeat: repeat-x;
+	padding:2px 3px;
+	border: 1px solid #476c9e;
+}
+
+.inputText,.inputTextarea,.inputFile,.inputSelect{
+    font-size:12px;
+	margin:0;
+	padding:0 1px;
+	border: 1px solid #476c9e;
+}
+.inputDate{
+    font-size:12px;
+	margin:0;
+	padding:0 1px;
+	width:70px;
+	background-color:#FFF9C8;
+	border: 1px solid #476c9e;
+	cursor: default;
+}

@@ -1,0 +1,27 @@
+.xmrbiTable
+{
+	behavior: url(../../behaviors/xmrbiTable.htc);
+	
+}
+.tabth{
+	FONT-SIZE: 12px; BACKGROUND-IMAGE: url(../images/tableth.gif); COLOR: #000000; BACKGROUND-COLOR: #000000;
+	border-style:none;border:0 px;border-right:1px inset #ACA899;height:20px;
+	
+}
+.tabTop{
+	FONT-SIZE: 12px;  COLOR: #000000; BACKGROUND-COLOR: #EEEAD8;
+	border-style:none;border:0 px;border-right:1px inset #ACA899;
+	border-bottom: 1px inset #CBC7B8;
+}
+.td0{
+	FONT-SIZE: 12px;height:18px;cursor:default;
+	FONT-SIZE: 12px;BACKGROUND-COLOR: #F1F1F1;height:18px;cursor:default; border-right:1px solid #EBEBEB;
+}
+.td1{
+	FONT-SIZE: 12px;BACKGROUND-COLOR: #FFFFFF;height:18px;cursor:default;border-right:1px solid #EBEBEB;
+}
+
+.tdOver{
+	FONT-SIZE: 12px;height:18px;cursor:default;
+	FONT-SIZE: 12px;BACKGROUND-COLOR: #D9E8FC;height:18px;cursor:default;  
+}

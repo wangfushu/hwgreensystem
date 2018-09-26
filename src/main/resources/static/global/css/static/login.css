@@ -1,0 +1,80 @@
+@CHARSET "UTF-8";
+
+.login-page {
+	width: 100%;
+	height: 100%;
+	background: url("../../images/login_bg.jpg") no-repeat;
+	background-size: 100% 100%;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/login_bg.jpg', sizingMethod='scale');
+}
+
+.login-header {
+	padding: 15px 0;
+	text-align: center;
+	background-color: #323C67;
+}
+
+.login-header img{margin:0 auto;}
+
+.login-body {margin:0;padding: 0;}
+
+.login-body .login-box {
+	margin-right: 100px;
+	background-color: #fff;
+	border-radius: 5px;
+	padding: 20px;
+	box-shadow: 0px -3px 3px rgba(204, 204, 204, 0.5), -3px 0px 3px
+		rgba(204, 204, 204, 0.5), 3px 0px 3px rgba(204, 204, 204, 0.5), 0px
+		3px 3px rgba(204, 204, 204, 0.5);
+}
+
+.login-body .login-box .login-logo {
+	margin-bottom: 5px;
+	margin-top: 30px;
+	font-size: 25px;
+}
+
+.login-body .login-box .login-box-body {
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+.login-body .login-box .login-box-body .form-group {
+	margin-bottom: 20px;
+}
+
+.login-body .login-box .login-box-body .forget {
+	padding: 10px 20px;
+	text-align: right;
+}
+
+.login-body .login-box .login-box-body .form-control {
+	padding-left: 35px;
+	height: 35px;
+	vertical-align: middle;
+	font-size: 15px;
+	background-color: rgb(235, 235, 235)
+}
+
+.align-left {
+	left: 0;
+}
+
+.login-footer {
+	text-align: center;
+	padding: 5px 0;
+	background-color: #323C67;
+	width:100%;
+	position: fixed;
+	bottom:0;
+}
+
+.login-footer span.copyright {
+	color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+  .login-body .login-box {
+  	margin: 20px auto;
+  }
+}

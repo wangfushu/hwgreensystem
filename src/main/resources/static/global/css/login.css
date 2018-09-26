@@ -1,0 +1,128 @@
+#body {
+    margin: 0px;
+    padding: 0px;
+}
+#bg {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    position: fixed;
+}
+#bg_1{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    display:block;
+}
+
+#top {
+    width: 1024px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    position: relative;
+    padding: 0px;
+    background-image: url(images/bg_02.png);
+    background-repeat: no-repeat;
+    background-size:100%;
+}
+#center {
+    padding: 0px;
+    width: 1024px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    position: relative;
+}
+#logo {
+    width: 65%;
+    padding: 0px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    padding-top:12%;
+}
+#login {
+    background-image: url(images/login_09.png);
+    background-repeat: no-repeat;
+    margin: 0px;
+    padding: 0px;
+    height: 396px;
+    width: 70%;
+    float: left;
+}
+#title {
+    float: left;
+    width: 30%;
+    margin: 0px;
+    padding-top: 10%;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+.loginErr{
+    float:right;
+    padding-top:12px;
+    padding-right:140px;;
+    color:#FF0000;
+    font-size:13px;
+}
+#yonghu {
+    padding: 0px;
+    width: 80%;
+    margin-top: 20%;
+    margin-right: auto;
+    margin-left: auto;
+}
+#yonghu ul {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+.shuru {
+    padding: 5px;
+    width: 285px;
+    border: 1px solid #7dcbfc;
+    margin: 0px;
+    height: 32px;
+    font-size: 15px;
+    color: #8c8c8c;
+    border-radius: 5px;
+    line-height:32px;
+}
+.a1 {
+    color: #0582c1;
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 5px;
+}
+.a2 {
+    background-image: url(images/botton_12.png);
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    height: 49px;
+    width: 295px;
+    border:none;
+    display:block;
+}
+#neirong {
+    padding: 0px;
+    width: 60%;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+}
+#yonghu ul li {
+    padding: 0px;
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}

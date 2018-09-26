@@ -1,0 +1,146 @@
+.GZFTree
+{
+	behavior: url(../../behaviors/GZFTreeXML.htc);
+	display: list-item;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	color: menutext;
+	background-color: window;
+	border: none;
+	cursor: default;
+	overflow: none;
+	top:0px;
+	margin-top: 0px;
+	width:100%;
+	height:100%;
+	
+}
+
+
+.TreeBusying
+{
+	cursor:wait;
+	z-index:100;
+	position:absolute ;	
+	cursor : wait;
+	text-align : center;
+	display:none;
+}
+.TreeBusyingImg
+{
+	-moz-opacity:0.5; 
+	filter:alpha(opacity=80);
+	cursor:wait;
+}
+
+
+.GZFTree LI A.clsMouseAllowPut
+{
+	color: windowtext;
+	border: 0px solid #aaaaaa;
+    background-color: #d6d3ce;
+	cursor:default;
+}
+
+.GZFTree LI
+{
+	list-style-type: none;
+	margin: 0px;
+	margin-left: 9px;
+	padding: 0px;
+	height: 0px;
+	left: 20px;
+}
+.GZFTree .icon
+{
+	cursor: arrow;
+	margin: 0px;
+	padding: 0px;
+	width:16px;
+	height:16px;
+}
+.GZFTree .pict
+{
+	cursor: default;
+	margin: 0px;
+	margin-left:3px;
+	padding: 0px;
+	width:16px;
+	height:16px;
+}
+.GZFTree LI UL
+{
+	list-style-type: none;
+	margin: 0px;
+	margin-left: 16px;
+	padding: 0px;
+	position: relative;
+	display: none;
+	width: 180px;
+	left: 0px;
+	filter:revealTrans(Duration=0.23,Transition=12)
+}
+.GZFTree LI A
+{
+	color: windowtext;
+	background-color: window;
+	border: 1px solid window;
+	text-decoration: none;
+	margin: 0px;
+	padding-left: 3px;
+	padding-right: 2px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	position: relative;
+	top: -2px;
+	left: 2px;
+}
+.GZFTree LI A.clsMouseOver
+{
+	color: windowtext;
+	border: 1px solid #aaaaaa;
+    background-color: window;
+	color:#000000
+}
+.GZFTree LI A.clsMouseDown
+{
+	color: windowtext;
+	border: 1px solid #000000;
+    background-color: #d6d3ce;
+	color:#FFFFFF
+}
+.GZFTree LI A.clsSelect
+{
+	color: windowtext;
+	border: 1px solid #000080;
+    background-color: #316AC5;
+	color:#FFFFFF
+	
+}
+.Title
+{
+
+	border-right: 0px;
+	margin: 0px 0px 0px 0px;
+	font-size:12px;
+	height:22px;
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr=#F3F5F7, EndColorStr=#EDE8CD);
+
+}
+.tdMenu
+{
+width:23%;left:0px;position:absoult;margin-left:0px;margin-right:0px;border:1px outset #F3F5F7;border-right:1px outset #C0C0C0; height:100%;filter:revealTrans(Duration=0.3,Transition=12);
+}
+
+.TreePanel{
+	overflow: auto;
+	margin: 0px;
+	border: medium none;
+	top:0px;
+	left:0px;
+	position:absoult;
+}
+
+

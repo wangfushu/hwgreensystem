@@ -14,7 +14,7 @@ public class SysBaseInformation {
 
 
     private String biType;
-
+    private String biTypeName;
 
     private String biTypeId;
 
@@ -48,7 +48,7 @@ public class SysBaseInformation {
             pkColumnValue = "SysBaseInformation.id",
             valueColumnName = "ST_SeqValue",
             allocationSize = 1,
-            initialValue = 2
+            initialValue = 7
     )
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "ID_GENERATOR")
     public Long getId() {
@@ -148,5 +148,14 @@ public class SysBaseInformation {
 
     public void setBiTypeId(String biTypeId) {
         this.biTypeId = biTypeId;
+    }
+
+    @Column(name = "BI_TYPENAME")
+    public String getBiTypeName() {
+        return biTypeName;
+    }
+
+    public void setBiTypeName(String biTypeName) {
+        this.biTypeName = biTypeName;
     }
 }

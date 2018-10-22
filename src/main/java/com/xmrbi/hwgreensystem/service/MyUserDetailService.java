@@ -35,7 +35,7 @@ public class MyUserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("登录名不可为空！");
         }
         Users dbUser = usersService.findByName(username);
-        if (dbUser == null) {
+        if (dbUser == null||dbUser.getStatus()!=1) {
             logger.info("{} user not found in db", username);
             throw new UsernameNotFoundException("用户" + username + " 不存在");
         }

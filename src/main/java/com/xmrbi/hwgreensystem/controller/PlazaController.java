@@ -2,9 +2,12 @@ package com.xmrbi.hwgreensystem.controller;
 
 import com.xmrbi.hwgreensystem.common.MessageConfigConstant;
 import com.xmrbi.hwgreensystem.domain.db.SysPlaza;
+import com.xmrbi.hwgreensystem.domain.db.Users;
 import com.xmrbi.hwgreensystem.service.SysPlazaService;
+import com.xmrbi.hwgreensystem.service.UsersService;
 import com.xmrbi.hwgreensystem.until.WholeResponse;
 import com.xmrbi.hwgreensystem.until.treeUtils.Tree;
+import com.xmrbi.hwgreensystem.until.treeUtils.TreeListUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,11 +55,13 @@ import java.util.Map;
 @Controller
 @RequestMapping(value="/sysplaza")
 @Scope("prototype")
-public class PlazaController {
+public class PlazaController extends BaseControl {
     private static Logger logger = LoggerFactory.getLogger(PlazaController.class);
 
     @Autowired
     SysPlazaService sysPlazaService;
+    @Autowired
+    UsersService usersService;
 
     @RequestMapping(value="/index")
     public String index(HttpServletRequest request, HttpServletResponse response){
@@ -77,9 +82,35 @@ public class PlazaController {
     }
     @RequestMapping(value="listSysPlaza")
     @ResponseBody
-    public List<SysPlaza> listDept(HttpServletRequest request, HttpServletResponse response){
+    public List<SysPlaza> listSysPlaza(HttpServletRequest request, HttpServletResponse response){
         try {
             List<SysPlaza> sysDeptList = sysPlazaService.list();
+            return sysDeptList;
+        } catch (Exception e) {
+            logger.info("listSysPlaza查询出错"+e.getMessage());
+            return null;
+        }
+    }
+
+    @RequestMapping(value="listSysPlazalevel3")
+    @ResponseBody
+    public List<SysPlaza> listSysPlazalevel3(HttpServletRequest request, HttpServletResponse response){
+        try {
+            Users users=getCurrentUser();
+            List<SysPlaza> sysPlazaList = sysPlazaService.findLevel3(users.getSysPlaza().getPlazaId(),3l);
+            return sysPlazaList;
+        } catch (Exception e) {
+            logger.info("listSysPlaza查询出错"+e.getMessage());
+            return null;
+        }
+    }
+
+
+    @RequestMapping(value="/SysPlazaById/{plazaId}")
+    @ResponseBody
+    public SysPlaza SysPlazaById(@PathVariable("plazaId") Long plazaId, HttpServletRequest request, HttpServletResponse response){
+        try {
+            SysPlaza sysDeptList = sysPlazaService.get(plazaId);
             return sysDeptList;
         } catch (Exception e) {
             logger.info("listSysPlaza查询出错"+e.getMessage());
@@ -90,9 +121,10 @@ public class PlazaController {
     public String addSysPlaza(Model model, @PathVariable("plazaId") Long plazaId, HttpServletRequest request, HttpServletResponse response){
         logger.info("addSysPlaza跳转网点添加页面");
         try {
+            SysPlaza sysPlaza= sysPlazaService.get(plazaId);
             model.addAttribute("pId",plazaId);
-            model.addAttribute("pName",sysPlazaService.get(plazaId).getPlazaName());
-
+            model.addAttribute("pName",sysPlaza.getPlazaName());
+            model.addAttribute("level",sysPlaza.getLevel()+1);
         } catch (Exception e) {
             logger.error("addSysPlaza跳转网点添加页面出错了"+e.getMessage());
         }
@@ -104,6 +136,9 @@ public class PlazaController {
     public WholeResponse savePlaza(SysPlaza sysPlaza, HttpServletRequest request, HttpServletResponse response){
         try {
             HttpSession session = request.getSession();
+            if(null==sysPlaza.getDelFlag()){
+                sysPlaza.setDelFlag(1);
+            }
             SysPlaza sysPlaza1 = sysPlazaService.save(sysPlaza);
             if(null!=sysPlaza1){
                 return WholeResponse.successResponse("新加网点成功");
@@ -179,6 +214,28 @@ public class PlazaController {
             }*/
         } catch (Exception e) {
             logger.error("updateSysPlaza网点更新出错"+e.getMessage());
+            return WholeResponse.errorResponse("500", "系统异常");
+        }
+    }
+
+
+    @RequestMapping(value = "/removeSysPlaza")
+    @ResponseBody
+    public WholeResponse removeSysPlaza(Long plazaId, HttpServletRequest request) {
+        logger.info("removeUser用户删除");
+        try {
+            Users currentUser = getCurrentUser();
+            SysPlaza sysPlaza = sysPlazaService.get(plazaId);
+            List<Users> usersList=usersService.findByPlazaId(plazaId);
+            List<Long> sysPlazaIds=sysPlazaService.findPlazaIdByParentId(plazaId);
+            if (usersList.size()>0||sysPlazaIds.size()>0) {
+                return WholeResponse.errorResponse("1", "该网点下还有用户或网点,请先删除网点下的数据");
+            }
+            sysPlazaService.delete(currentUser, sysPlaza);
+            return WholeResponse.successResponse("删除数据成功");
+
+        } catch (Exception e) {
+            logger.error("removeSysPlaza网点删除出错" + e.getMessage());
             return WholeResponse.errorResponse("500", "系统异常");
         }
     }

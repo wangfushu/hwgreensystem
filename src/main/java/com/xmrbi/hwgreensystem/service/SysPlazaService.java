@@ -5,6 +5,7 @@ import com.xmrbi.hwgreensystem.dao.SysPlazaDao;
 import com.xmrbi.hwgreensystem.dao.util.DynamicSpecifications;
 import com.xmrbi.hwgreensystem.dao.util.SearchFilter;
 import com.xmrbi.hwgreensystem.domain.db.SysPlaza;
+import com.xmrbi.hwgreensystem.domain.db.Users;
 import com.xmrbi.hwgreensystem.until.treeUtils.BuildTree;
 import com.xmrbi.hwgreensystem.until.treeUtils.Tree;
 import freemarker.template.utility.StringUtil;
@@ -61,6 +62,7 @@ public class SysPlazaService {
             tree.setId(sysPlaza.getPlazaId().toString());
             tree.setParentId(sysPlaza.getParentId().toString());
             tree.setText(sysPlaza.getPlazaName());
+            tree.setTlevel(sysPlaza.getLevel());
             Map<String, Object> state = new HashMap<String, Object>();
             state.put("opened", true);
             tree.setState(state);
@@ -73,9 +75,16 @@ public class SysPlazaService {
     public List<SysPlaza> list(){
         List<SearchFilter> filters = Lists.newArrayList();
         Specification<SysPlaza> spec = DynamicSpecifications.bySearchFilter(filters, SysPlaza.class);
-        List<SysPlaza> sysPlazas= sysPlazaDao.findAll(spec);
+        Sort purchaseDateDB = new Sort(Sort.Direction.ASC, "orderNum");
+        List<SysPlaza> sysPlazas= sysPlazaDao.findAll(spec,purchaseDateDB);
         return sysPlazas;
     }
+
+    public List<SysPlaza> findLevel3(Long parentId,Long level){
+        return sysPlazaDao.findSysPlazasByParentIdAAndLevel(parentId,level);
+    }
+
+
     public SysPlaza get(Long plazaId){
         return sysPlazaDao.findByPlazaId(plazaId);
     }
@@ -89,8 +98,15 @@ public class SysPlazaService {
                 dbsysPlaza.setParentId(sysPlaza.getParentId());
             if (!StringUtils.isEmpty(sysPlaza.getPlazaName()))
                 dbsysPlaza.setPlazaName(sysPlaza.getPlazaName());
-            if (null!= sysPlaza.getDelFlag())
+            if (null!= sysPlaza.getDelFlag()) {
                 dbsysPlaza.setDelFlag(sysPlaza.getDelFlag());
+                /*List<Long> downIds =sysPlazaDao.findPlazaIdByParentId(dbsysPlaza.getPlazaId());
+                for(Long i:downIds){
+                    SysPlaza sysPlazaTemp=sysPlazaDao.findByPlazaId(i);
+                    sysPlazaTemp.setDelFlag(sysPlaza.getDelFlag());
+                    sysPlazaDao.save(sysPlazaTemp);
+                }*/
+            }
             if(null!= sysPlaza.getOrderNum())
                 dbsysPlaza.setOrderNum(sysPlaza.getOrderNum());
             if (!StringUtils.isEmpty(sysPlaza.getPlazaRemark()))
@@ -100,6 +116,23 @@ public class SysPlazaService {
         }else {
             return "error";
         }
+    }
 
+    /**
+     * 根据parentId获取所有的叶子节点
+     * @param parentId
+     * @return
+     */
+    public List<Long> findPlazaIdByParentId(Long parentId){
+        return sysPlazaDao.findPlazaIdByParentId(parentId);
+    }
+
+
+    public void delete(Users operatorUser, SysPlaza deleteSysPlaza) {
+        if (deleteSysPlaza == null) {
+            return;
+        }
+        LOGGER.info("SysPlaza {} has delete,operator user id is {},name is ", deleteSysPlaza, operatorUser.getId(), operatorUser.getUserName());
+        sysPlazaDao.delete(deleteSysPlaza);
     }
 }

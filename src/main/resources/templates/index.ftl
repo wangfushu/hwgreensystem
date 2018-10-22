@@ -195,7 +195,7 @@
 <aside class="Hui-aside">
     <div class="menu_dropdown bk_2">
 
-    <@sec.authorize ifAnyGranted = 'ROLE_SUPERADMIN'>
+    <@sec.authorize ifAnyGranted = 'ROLE_SUPERADMIN,ROLE_CENTER_ADMIN'>
         <dl id="menu-member">
             <dt><i class="Hui-iconfont">&#xe60d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d6;</i></dt>
             <dd>
@@ -207,7 +207,7 @@
             </dd>
         </dl>
     </@sec.authorize>
-    <@sec.authorize ifAnyGranted = 'ROLE_SUPERADMIN'>
+    <@sec.authorize ifAnyGranted = 'ROLE_SUPERADMIN,ROLE_CENTER_ADMIN'>
         <dl id="menu-member">
             <dt><i class="Hui-iconfont">&#xe62e;</i> 基础信息管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d6;</i></dt>
             <dd>
@@ -223,16 +223,19 @@
         </dl>
     </@sec.authorize>
 
-    <@sec.authorize ifAnyGranted = 'ROLE_SUPERADMIN'>
+    <@sec.authorize ifAnyGranted = 'ROLE_SUPERADMIN,ROLE_CENTER_ADMIN,ROLE_AREA_ADMIN,ROLE_SITE_ADMIN,ROLE_USER'>
         <dl id="menu-member">
             <dt><i class="Hui-iconfont">&#xe6bf;</i> 报表管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d6;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="/statistic/issuetag-day-report"  data-title="发卡信息跨日报表"
-                           href="javascript:;">发卡信息跨日报表</a>
+                    <li><a data-href="/report/vehicle-report"  data-title="车辆信息报表"
+                           href="javascript:;">车辆信息报表</a>
                     </li>
-                    <li><a data-href="/statistic/issuetag-year-report"  data-title="发卡信息年报表"
-                           href="javascript:;">发卡信息年报表</a>
+                    <li><a data-href="/report/year-report"  data-title="车辆信息年统计导出"
+                           href="javascript:;">车辆信息年统计导出</a>
+                    </li>
+                    <li><a data-href="/report/month-report"  data-title="车辆信息年统计导出"
+                           href="javascript:;">车辆信息月统计导出</a>
                     </li>
                 </ul>
             </dd>
@@ -256,9 +259,12 @@
     <div id="iframe_box" class="Hui-article">
         <div class="show_iframe">
             <div style="display:none" class="loading"></div>
-
+            <@sec.authorize ifAnyGranted = 'ROLE_SUPERADMIN,ROLE_CENTER_ADMIN'>
             <iframe scrolling="yes" frameborder="0" src="/user/index"></iframe>
-
+            </@sec.authorize>
+            <@sec.authorize ifAnyGranted = 'ROLE_AREA_ADMIN,ROLE_SITE_ADMIN,ROLE_USER'>
+            <iframe scrolling="yes" frameborder="0" src="/report/vehicle-report"></iframe>
+            </@sec.authorize>
 
         </div>
     </div>

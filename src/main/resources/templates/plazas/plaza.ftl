@@ -66,7 +66,7 @@ function load() {
 				expandColumn : '1', // 在哪一列上面显示展开按钮
 				striped : true, // 是否各行渐变色
 				bordered : true, // 是否显示边框
-				expandAll : false, // 是否全部展开
+				expandAll : true, // 是否全部展开
 				// toolbar : '#exampleToolbar',
 				columns : [
 					{
@@ -80,7 +80,10 @@ function load() {
 					{
 						field : 'plazaName',
 						title : '网点名称'
-					},
+					},{
+                        field : 'level',
+                        title : '级别'
+                    },
 					{
 						field : 'orderNum',
 						title : '排序'
@@ -115,10 +118,10 @@ function load() {
 								+ item.plazaId
 								+ '\')"><i class="fa fa-key"></i></a> ';
                             if(item.plazaId==1) {
-                                return e + a;
+                                return  a;
                             }
                             else{
-                                return e + a + d;
+                                return e + a+d;
 							}
 
 						}
@@ -163,10 +166,10 @@ function load() {
             btn : [ '确定', '取消' ]
         }, function() {
             $.ajax({
-                url : "/dept/removeDept",
+                url : "/sysplaza/removeSysPlaza",
                 type : "post",
                 data : {
-                    'deptId' : id
+                    'plazaId' : id
                 },
                 success : function(r) {
                     if (r.code == 0) {

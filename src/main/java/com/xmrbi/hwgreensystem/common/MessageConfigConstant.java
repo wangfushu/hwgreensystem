@@ -53,7 +53,7 @@ public class MessageConfigConstant {
     //部门根节点id
     public static Long DEPT_ROOT_ID = 0l;
     //部门根节点名称
-    public static String DEPT_ROOT_NAME = "fushu";
+    public static String DEPT_ROOT_NAME = "最高级节点";
 
 
     //接口验证码 防止别人直接访问接口

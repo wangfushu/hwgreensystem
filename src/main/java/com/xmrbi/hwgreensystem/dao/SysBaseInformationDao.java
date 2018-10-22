@@ -15,6 +15,7 @@ public interface SysBaseInformationDao extends BaseDao<SysBaseInformation, Long>
     @Query(value = "select distinct Bi_Type as name,Bi_TypeId as kid  from sys_baseinformation ",nativeQuery = true)
     List<TreeVo> getAllType();
 
+    SysBaseInformation findByBiTypeAndBiValue(String biType,String biValue);
 	/*@Query(value = "from SysBaseInformation cr where biType = ? order by sort desc")
     List<SysBaseInformation> querybybiType(String biType);*/
 }

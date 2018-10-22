@@ -3,7 +3,6 @@ package com.xmrbi.hwgreensystem.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xmrbi.hwgreensystem.domain.db.Users;
-import com.xmrbi.hwgreensystem.interceptor.annotation.UnInterception;
 import com.xmrbi.hwgreensystem.service.UsersService;
 import com.xmrbi.hwgreensystem.until.LoginResponse;
 import com.xmrbi.hwgreensystem.until.PrintUtil;
@@ -73,7 +72,7 @@ public class LoginControl {
             } else {
                 //UserDO userDO = userService.retrieve(username, password);
                 Users users = usersService.findByName(userName);
-                if (null != users) {
+                if (null != users&&users.getStatus()!=0) {
                     if (passwordEncoder.matches(password, users.getPassword())) {
                         if (users.getIsInspector()) {
                             loginResponse = LoginResponse.successLogin();

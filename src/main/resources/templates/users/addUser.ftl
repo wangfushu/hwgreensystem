@@ -1,7 +1,7 @@
 <#assign  sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 <!DOCTYPE html>
 <head>
-<title>添加用户</title>
+    <title>添加用户</title>
 <#include "/common/header.ftl">
 </head>
 <body class="gray-bg">
@@ -52,7 +52,7 @@
                             <label class="col-sm-3 control-label">状态:</label>
                             <div class="col-sm-8">
                                 <label class="radio-inline"> <input type="radio"
-                                                                    name="status" value="1"/> 在职
+                                                                    name="status" value="1" checked/> 在职
                                 </label> <label class="radio-inline"> <input type="radio"
                                                                              name="status" value="0"/> 离职
                             </label>
@@ -71,8 +71,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">电话号码：</label>
                             <div class="col-sm-8">
-                                <input id="telphone" name="telphone" class="form-control"
-                                       type="tel">
+                                <input id="telphone" name="telphone" class="form-control">
                             </div>
                         </div>
 
@@ -111,7 +110,7 @@
         $.ajax({
             cache: true,
             type: "POST",
-            url:  "/user/saveUser",
+            url: "/user/saveUser",
             data: $('#signupForm').serialize(),// formid
             async: false,
             error: function (request) {
@@ -157,7 +156,7 @@
                 pName: {
                     required: true,
                 },
-                roleId:{
+                roleId: {
                     required: true,
                 },
                 password: {
@@ -169,6 +168,12 @@
                     minlength: 6,
                     equalTo: "#password"
                 },
+                telphone: {
+                    maxlength: 11,
+                },
+                status:{
+                    required: true,
+                }
             },
             messages: {
                 userNo: {
@@ -179,7 +184,7 @@
                 userName: {
                     required: icon + "请输入您的姓名",
                     minlength: icon + "姓名必须两个字符以上",
-                    maxlength: icon+"姓名必须40个字符之下"
+                    maxlength: icon + "姓名必须40个字符之下"
 
                 },
                 pName: {
@@ -188,7 +193,12 @@
                 roleId: {
                     required: icon + "请选择角色",
                 },
-                telphone: icon + "请输入您的手机号码",
+                status:{
+                    required: icon + "请选择在职状态",
+                },
+                telphone: {
+                    maxlength: icon + "手机号过长",
+                },
                 password: {
                     required: icon + "请输入您的密码",
                     minlength: icon + "密码必须6个字符以上"
@@ -202,13 +212,13 @@
         })
     }
 
-    function  openSysplaza() {
+    function openSysplaza() {
         layer.open({
-            type : 2,
-            title : "选择网点",
-            area : [ '300px', '450px' ],
-            offset:['15px'],
-            content : "/sysplaza/treeView"
+            type: 2,
+            title: "选择网点",
+            area: ['300px', '450px'],
+            offset: ['15px'],
+            content: "/sysplaza/treeView"
         })
     }
 

@@ -12,6 +12,9 @@
 <script src="/global/bootstrap/js/plugins/jqTreeGrid/jquery.treegrid.bootstrap3.js"></script>
 <script src="/global/bootstrap/js/plugins/chosen/chosen.jquery.js"></script>
 
+<#--select-->
+<script src="/global/bootstrap-select/bootstrap-select.js"></script>
+
 <script src="/global/H-ui-admin/lib/layer/2.4/layer.js"></script>
 <#--<script src="/global/bootstrap/js/plugins/layer/layer.min.js"></script>-->
 <script src="/global/js/bootstrap/js/content.js?v=1.0.0"></script>

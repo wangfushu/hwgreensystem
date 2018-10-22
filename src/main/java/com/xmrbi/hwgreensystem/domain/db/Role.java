@@ -1,5 +1,6 @@
 package com.xmrbi.hwgreensystem.domain.db;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -14,7 +15,8 @@ import java.util.List;
 public class Role extends IdEntity {
     private String name;
     private String remark;
-    private List<Users> users;
+/*    @JsonIgnore
+    private List<Users> users;*/
 
     @Column(name = "role_name")
     public String getName() {
@@ -33,7 +35,7 @@ public class Role extends IdEntity {
         this.remark = remark;
     }
 
-    @OneToMany(targetEntity = Users.class)
+/*    @OneToMany(targetEntity = Users.class)
     @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "role_id",
             referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "user_id",
             referencedColumnName = "id")})
@@ -44,5 +46,5 @@ public class Role extends IdEntity {
 
     public void setUsers(List<Users> users) {
         this.users = users;
-    }
+    }*/
 }

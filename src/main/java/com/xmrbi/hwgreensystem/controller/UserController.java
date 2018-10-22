@@ -12,7 +12,6 @@ import com.xmrbi.hwgreensystem.service.UsersService;
 import com.xmrbi.hwgreensystem.until.PageUtils;
 import com.xmrbi.hwgreensystem.until.StringUtil;
 import com.xmrbi.hwgreensystem.until.WholeResponse;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,6 +110,8 @@ public class UserController extends BaseControl {
                 //oldUser.setEmail(users.getEmail());
                 if (!StringUtil.isEmpty(users.getRemark()))
                     oldUser.setRemark(users.getRemark());
+                if (null != users.getStatus())
+                    oldUser.setStatus(users.getStatus());
                 oldUser.setGmtModify(new Date());
                 if (null != roleId) {
                     Role role = userService.findByRoleId(roleId);
@@ -126,6 +127,8 @@ public class UserController extends BaseControl {
                     Role role = userService.findByRoleId(roleId);
                     users.setRoles(Lists.newArrayList(role));
                 }
+                if (null == users.getStatus())
+                    users.setStatus(1);
                 users.setGmtCreate(new Date());
                 Users save = userService.saveOrUpdate(users);
                 return WholeResponse.successResponse("保存数据成功");
@@ -243,9 +246,9 @@ public class UserController extends BaseControl {
         Preconditions.checkNotNull(oldPassword, "oldPassword 不能为空");
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Users currentUser = getCurrentUser();
-        if (passwordEncoder.matches(oldPassword,currentUser.getPassword())) {
+        if (passwordEncoder.matches(oldPassword, currentUser.getPassword())) {
             return "true";
-        }else{
+        } else {
             return "false";
         }
     }
@@ -256,8 +259,8 @@ public class UserController extends BaseControl {
         Preconditions.checkNotNull(newpassword, "password 不能为空");
         Users currentUser = getCurrentUser();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        if (passwordEncoder.matches(oldPassword,currentUser.getPassword())) {
-            currentUser.setPassword( passwordEncoder.encode(newpassword));
+        if (passwordEncoder.matches(oldPassword, currentUser.getPassword())) {
+            currentUser.setPassword(passwordEncoder.encode(newpassword));
             currentUser.setGmtModify(new Date());
             userService.saveOrUpdate(currentUser);
             return "ok";

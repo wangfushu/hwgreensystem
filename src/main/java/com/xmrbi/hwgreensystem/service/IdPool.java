@@ -3,6 +3,7 @@ package com.xmrbi.hwgreensystem.service;
 
 import com.xmrbi.hwgreensystem.dao.util.IdUtilDao;
 import com.xmrbi.hwgreensystem.until.StringUtil;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 
@@ -10,8 +11,11 @@ import org.springframework.stereotype.Service;
  * Created by wangfs on 2018-03-28 helloword.
  */
 
-@Service
+
 public class IdPool {
+    private SpringContextUtil springContextUtil;
+
+
     private IdUtilDao idUtilDao;
     /**
      * 实体名称
@@ -141,11 +145,27 @@ public class IdPool {
         this.pointer = pointer;
     }
 
-    public IdUtilDao getIdDao() {
+ /*   public IdUtilDao getIdDao() {
         return idUtilDao;
     }
 
     public void setIdDao(IdUtilDao idUtilDao) {
         this.idUtilDao = idUtilDao;
+    }*/
+
+    public IdUtilDao getIdUtilDao() {
+        return idUtilDao;
+    }
+
+    public void setIdUtilDao(IdUtilDao idUtilDao) {
+        this.idUtilDao = idUtilDao;
+    }
+
+    public SpringContextUtil getSpringContextUtil() {
+        return springContextUtil;
+    }
+
+    public void setSpringContextUtil(SpringContextUtil springContextUtil) {
+        this.springContextUtil = springContextUtil;
     }
 }

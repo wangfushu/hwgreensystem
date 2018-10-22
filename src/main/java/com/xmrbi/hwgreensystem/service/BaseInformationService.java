@@ -2,10 +2,12 @@ package com.xmrbi.hwgreensystem.service;
 
 import com.google.common.collect.Lists;
 import com.xmrbi.hwgreensystem.controller.BaseControl;
+import com.xmrbi.hwgreensystem.dao.CrashLogDao;
 import com.xmrbi.hwgreensystem.dao.SysBaseInformationDao;
 import com.xmrbi.hwgreensystem.dao.SysPlazaDao;
 import com.xmrbi.hwgreensystem.dao.util.DynamicSpecifications;
 import com.xmrbi.hwgreensystem.dao.util.SearchFilter;
+import com.xmrbi.hwgreensystem.domain.db.CrashLog;
 import com.xmrbi.hwgreensystem.domain.db.SysBaseInformation;
 import com.xmrbi.hwgreensystem.domain.db.SysPlaza;
 import com.xmrbi.hwgreensystem.domain.db.Users;
@@ -17,6 +19,7 @@ import com.xmrbi.hwgreensystem.until.treeUtils.Tree;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -71,6 +74,10 @@ public class BaseInformationService {
         return sysBaseInformation.get();
     }
 
+    public SysBaseInformation findByBiTypeAndBiValue(String bitype,String bivalue){
+        return sysBaseInformationDao.findByBiTypeAndBiValue(bitype,bivalue);
+    }
+
     public List<SysBaseInformation> save(List<SysBaseInformation> sysBaseInformations){
         return Lists.newArrayList(sysBaseInformationDao.saveAll(sysBaseInformations));
     }
@@ -97,7 +104,7 @@ public class BaseInformationService {
        // List<TreeVo> treeVos= sysBaseInformationDao.getAllType();
         EntityManager em = emf.createEntityManager();
         //定义SQL
-        String sql = "select distinct Bi_Type as name,Bi_TypeId as kid  from sys_baseinformation ";
+        String sql = "select distinct Bi_TypeName as name,Bi_TypeId as kid  from sys_baseinformation ";
         Query query = em.createNativeQuery(sql);
         //执行查询，返回的是对象数组(Object[])列表,
         //每一个对象数组存的是相应的实体属性
@@ -155,5 +162,20 @@ public class BaseInformationService {
         }
         LOGGER.info("SysBaseInformation {} has delete,operator user id is {},name is ", deleteSysBaseInformationList.toString(), operatorUser.getId(), operatorUser.getUserName());
         sysBaseInformationDao.deleteAll(deleteSysBaseInformationList);
+    }
+
+
+
+    @Autowired
+    private CrashLogDao crashLogDao;
+    /**
+     * 安卓机子打印日志
+     * @param carshLogText
+     */
+    public void saveCrashLog(String carshLogText){
+        CrashLog crashLog = new CrashLog();
+        crashLog.setCrashText(carshLogText);
+        crashLog.setCrashTime(new Date());
+        this.crashLogDao.save(crashLog);
     }
 }

@@ -28,6 +28,14 @@
 									<input id="plazaName" name="plazaName" class="form-control" type="text" autocomplete="off" required>
 								</div>
 							</div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">级别：</label>
+                                <div class="col-sm-8">
+                                    <input id="level" name="level" class="form-control"  readonly
+                                           type="text">
+                                </div>
+                            </div>
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label">排序：</label>
 								<div class="col-sm-8">
@@ -35,13 +43,13 @@
 										type="text">
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">状态：(0-在用;1-停用)</label>
+							<#--<div class="form-group">
+								<label class="col-sm-3 control-label">状态：(1-启用;0-禁用)</label>
 								<div class="col-sm-8">
 									<input id="delFlag" name="delFlag" class="form-control"
 										type="text">
 								</div>
-							</div>
+							</div>-->
 							<div class="form-group">
 								<div class="col-sm-8 col-sm-offset-3">
 									<button type="submit" class="btn btn-primary">提交</button>
@@ -123,6 +131,16 @@ function  openSysplaza() {
 function loadSysplaza(parentId, pName) {
     $("#parentId").val(parentId);
     $("#pName").val(pName);
+    $.ajax({
+        url: "/sysplaza/SysPlazaById/" + parentId,
+        type: 'get',
+        dataType: "json",
+        async: false,
+        success: function (returnValue) {
+            // 未查询到相应的列，展示默认列
+            $("#level").val(returnValue.level+1);
+        }
+    });
 }
 </script>
 </body>

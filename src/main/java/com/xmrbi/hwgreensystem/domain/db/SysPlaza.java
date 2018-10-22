@@ -42,6 +42,17 @@ public class SysPlaza {
     @Column(name = "delflag")
     private Integer delFlag;
 
+    @Column(name = "level")
+    private Integer level;
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
     public Long getPlazaId() {
         return plazaId;
     }

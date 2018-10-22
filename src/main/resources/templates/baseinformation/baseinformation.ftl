@@ -101,7 +101,7 @@
                     checkbox : true
                 },
                 {
-                    field : 'biType', // 列字段名
+                    field : 'biTypeName', // 列字段名
                     title : '类别' // 列标题
                 },
                 {

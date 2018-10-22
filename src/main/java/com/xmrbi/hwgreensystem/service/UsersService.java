@@ -3,6 +3,7 @@ package com.xmrbi.hwgreensystem.service;
 
 import com.google.common.collect.Lists;
 import com.xmrbi.hwgreensystem.dao.RoleDao;
+import com.xmrbi.hwgreensystem.dao.SysPlazaDao;
 import com.xmrbi.hwgreensystem.dao.UsersDao;
 import com.xmrbi.hwgreensystem.dao.util.DynamicSpecifications;
 import com.xmrbi.hwgreensystem.dao.util.SearchFilter;
@@ -40,6 +41,8 @@ public class UsersService {
     private UsersDao usersDao;
     @Resource
     private RoleDao roleDao;
+    @Resource
+    private SysPlazaDao sysPlazaDao;
     @Resource
     private SysPlazaService sysPlazaService;
 
@@ -92,6 +95,7 @@ public class UsersService {
         if(!StringUtil.isEmpty(userParam.getName())){
             filters.add(new SearchFilter("userNo"+SearchFilter.OR_SEPARATOR+"userName", SearchFilter.Operator.LIKE, userParam.getName()));
         }
+        filters.add(new SearchFilter("id", SearchFilter.Operator.NEQ, 0l));
         //filters.add(new SearchFilter("status", SearchFilter.Operator.EQ, 1));
         Specification<Users> spec = DynamicSpecifications.bySearchFilter(filters, Users.class);
         Sort purchaseDateDB = new Sort(Sort.Direction.DESC, "gmtCreate");
@@ -124,5 +128,21 @@ public class UsersService {
         }
         LOGGER.info("users {} has delete,operator user id is {},name is ", deleteUserList.toString(), operatorUser.getId(), operatorUser.getUserName());
         usersDao.deleteAll(deleteUserList);
+    }
+
+    public List<Users> findByPlazaId(Long plazaId){
+        List<SearchFilter> filters = Lists.newArrayList();
+        if(null!=plazaId) {
+            List<SysPlaza> sysPlazas=sysPlazaService.list();
+            TreeListUtils treeListUtils=new TreeListUtils();
+            List<Long> plazaIds=treeListUtils.treeSysPlazaList(sysPlazas,plazaId);
+            plazaIds.add(plazaId);
+            filters.add(new SearchFilter("sysPlaza.plazaId", SearchFilter.Operator.IN, plazaIds));
+        }
+        filters.add(new SearchFilter("status", SearchFilter.Operator.EQ, 1));
+        Specification<Users> spec = DynamicSpecifications.bySearchFilter(filters, Users.class);
+        /*Sort purchaseDateDB = new Sort(Sort.Direction.DESC, "gmtCreate");*/
+        List<Users> allUsers = usersDao.findAll(spec);
+        return allUsers;
     }
 }

@@ -1,7 +1,9 @@
 package com.xmrbi.hwgreensystem;
 
+import com.xmrbi.hwgreensystem.service.VmVehicleService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -9,13 +11,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class HwgreensystemApplicationTests {
+    @Autowired
+    private VmVehicleService vmVehicleService;
 
     @Test
     public void contextLoads() {
 
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String password = passwordEncoder.encode("1234");
-        System.out.println("password     "+password);
+
+      //  System.out.println(vmVehicleService.generate("0000720180927", "VmVehicle.vehicleNo"));
 
 
     }

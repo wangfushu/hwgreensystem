@@ -15,9 +15,10 @@
 			">
         <thead>
         <tr>
-            <th data-options="field:'biType',width:150,align:'center'">类型</th>
+            <th data-options="field:'biType',width:150,align:'center',hidden: true">类型</th>
+            <th data-options="field:'biTypeName',width:150,align:'center'">类型名</th>
             <th data-options="field:'biTypeId',width:150,align:'center',hidden: true">biTypeId</th>
-            <th data-options="field:'biValue',width:60,align:'center',editor:{type:'numberbox',options:{required:true}}">类型值</th>
+            <th data-options="field:'biValue',width:60,align:'center',editor:{type:'numberbox',options:{required:true}}">类型值(需唯一)</th>
             <th data-options="field:'biDescription',width:250,align:'center',editor:{type:'textbox',options:{required:true}}">描述</th>
             <th data-options="field:'sort',width:60,align:'center',editor:{type:'numberbox',options:{required:true}}">排序</th>
             <th data-options="field:'id',width:60,align:'center',hidden: true">id</th>
@@ -28,6 +29,7 @@
         <#list  sysBaseInformations  as sysBaseInformation>
             <tr>
                 <td>${sysBaseInformation.biType}</td>
+                <td>${sysBaseInformation.biTypeName}</td>
                 <td>${sysBaseInformation.biTypeId}</td>
                 <td>${sysBaseInformation.biValue!""}</td>
                 <td>${sysBaseInformation.biDescription!""}</td>
@@ -41,8 +43,8 @@
     <div id="tb" style="height:auto">
         <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append()">添加</a>
 <#--        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()">移除</a>-->
-        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="accept()">确定</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="save();return false">提交</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="accept()">编辑完成</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="save();return false">提交保存</a>
  </div>
 </div>
 <#include "/common/footer.ftl">
@@ -81,7 +83,7 @@
         if (endEditing()){
             var rows=$('#dg').datagrid('getRows');
             editIndex = $('#dg').datagrid('getRows').length-1;
-            $('#dg').datagrid('appendRow',{biType:rows[editIndex]['biType'],biTypeId:rows[editIndex]['biTypeId'],biValue:Number(rows[editIndex]['biValue'])+1,sort:Number(rows[editIndex]['sort'])+1,aMemo:'1'});
+            $('#dg').datagrid('appendRow',{biType:rows[editIndex]['biType'],biTypeName:rows[editIndex]['biTypeName'],biTypeId:rows[editIndex]['biTypeId'],biValue:Number(rows[editIndex]['biValue'])+1,sort:Number(rows[editIndex]['sort'])+1,aMemo:'1'});
 /*            $('#dg').datagrid('appendRow',{biValue:rows[editIndex]['biValue']});
             $('#dg').datagrid('appendRow',{sort:rows[editIndex]['sort']});*/
             editIndex = $('#dg').datagrid('getRows').length-1;

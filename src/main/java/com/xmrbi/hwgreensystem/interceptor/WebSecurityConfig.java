@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();//在spring boot项目中出现不能加载iframe,要disable掉才可以
 
         http.authorizeRequests()
-                .antMatchers("/login/login","/baseinformation/vehicleTypeList","/"+image_file_name+"**").permitAll()
+                .antMatchers("/login/login","/baseinformation/vehicleTypeList","/vehicle/**","/"+image_file_name+"**","/update/**").permitAll()
                 .and()
                 .formLogin().loginPage("/login")
                              .failureUrl("/login?msg=errorUser")

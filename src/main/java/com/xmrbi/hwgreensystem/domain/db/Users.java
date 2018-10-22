@@ -26,7 +26,7 @@ public class Users {
     private String userName;
     private Date gmtCreate;
     private Date gmtModify;
-    private Integer status;
+    private Integer status;//1-在职，2-离职
     private String remark;
     private List<Role> roles;
     private List<Role> rolesNoLazy;
@@ -101,6 +101,7 @@ public class Users {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
 
     @JsonBackReference
     @OneToMany(targetEntity = Role.class,fetch = FetchType.EAGER)
@@ -225,7 +226,7 @@ public class Users {
         return false;
     }
 
-
+    @JsonBackReference
     @ManyToOne(targetEntity = SysPlaza.class)
     @JoinColumn(name = "PLAZANO", updatable = true)
     public SysPlaza getSysPlaza() {

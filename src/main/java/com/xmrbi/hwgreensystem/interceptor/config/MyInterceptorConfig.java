@@ -74,6 +74,8 @@ public class MyInterceptorConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/"+image_file_name+"**").addResourceLocations("file:"+base_path+image_file_name+"/");
+        registry.addResourceHandler("/"+image_file_name+"**")
+                .addResourceLocations("file:"+base_path+image_file_name+"/");
+        registry.addResourceHandler("/update/**").addResourceLocations("classpath:/update_resources/");
     }
 }

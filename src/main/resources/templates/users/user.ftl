@@ -190,7 +190,7 @@
             title : '新增用户',
             maxmin : true,
             shadeClose : false, // 点击遮罩关闭层
-            area : [ '800px', '580px' ],
+            area : [ '800px', '480px' ],
             content : '/user/addUser' // iframe的url
         });
     }
@@ -222,7 +222,7 @@
             title : '修改用户',
             maxmin : true,
             shadeClose : true, // 点击遮罩关闭层
-            area : [ '800px', '520px' ],
+            area : [ '800px', '480px' ],
   /*          offset:'100px',*/
             content : '/user/editUser/' + id // iframe的url
         });

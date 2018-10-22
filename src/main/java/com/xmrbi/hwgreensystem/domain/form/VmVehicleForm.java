@@ -1,5 +1,6 @@
 package com.xmrbi.hwgreensystem.domain.form;
 
+import javax.persistence.Column;
 import java.util.Date;
 
 /**
@@ -22,6 +23,27 @@ public class VmVehicleForm {
     private String condition;//不符合事项
     private Long shiftID;//班组
     private Date shiftDate;//开单时间(出口时间)
+
+    private String productName;//产品名称
+    private Long plazaId;//出站口Id
+    private String plazaName;//出站口名称
+
+
+    public Long getPlazaId() {
+        return plazaId;
+    }
+
+    public void setPlazaId(Long plazaId) {
+        this.plazaId = plazaId;
+    }
+
+    public String getPlazaName() {
+        return plazaName;
+    }
+
+    public void setPlazaName(String plazaName) {
+        this.plazaName = plazaName;
+    }
 
     public String getVehicleNo() {
         return vehicleNo;
@@ -149,5 +171,13 @@ public class VmVehicleForm {
 
     public void setShiftDate(Date shiftDate) {
         this.shiftDate = shiftDate;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 }

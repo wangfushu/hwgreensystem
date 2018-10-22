@@ -21,6 +21,8 @@ public class Tree<T> {
 	 * 显示节点文本
 	 */
 	private String text;
+
+	private Integer tlevel;
 	/**
 	 * 节点状态，open closed
 	 */
@@ -124,8 +126,16 @@ public class Tree<T> {
 		this.parentId = parentId;
 	}
 
+	public Integer getTlevel() {
+		return tlevel;
+	}
+
+	public void setTlevel(Integer tlevel) {
+		this.tlevel = tlevel;
+	}
+
 	public Tree(String id, String text, Map<String, Object> state, boolean checked, Map<String, Object> attributes,
-                List<Tree<T>> children, boolean isParent, boolean isChildren, String parentID) {
+				List<Tree<T>> children, boolean isParent, boolean isChildren, String parentID) {
 		super();
 		this.id = id;
 		this.text = text;

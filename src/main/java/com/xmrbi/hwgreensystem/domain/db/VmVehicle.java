@@ -1,11 +1,13 @@
 package com.xmrbi.hwgreensystem.domain.db;
 
 
+import com.xmrbi.hwgreensystem.until.DateUtil;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Vm_Vehicle")
+@Table(name = "vehicle")
 public class VmVehicle {
 
 	@Id
@@ -69,10 +71,52 @@ public class VmVehicle {
 
 	@Column(name = "UPDATESIGN")
 	private Long updateSign;
+	@Column(name = "productname")
+	private String productName;//产品名称
+	@Column(name = "plazaid")
+	private Long plazaId;//出站口Id
+	@Column(name = "plazaname")
+	private String plazaName;//出站口名称
+
+    @Column(name = "inputtime")
+    private Date inputTime;//开单时间
+    @Column(name = "modifytime")
+    private Date modifyTime;//更新时间
+
 
 
 	@Transient
 	private String shiftName;//班组名称
+
+	@Transient
+	private String shiftDateStr;//开单时间字符串
+
+	@Transient
+	private String typeName;//车辆类型
+
+	public String getTypeName() {
+		return typeName;
+	}
+
+    public Date getInputTime() {
+        return inputTime;
+    }
+
+    public void setInputTime(Date inputTime) {
+        this.inputTime = inputTime;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
 
 	public Long getUserId() {
 		return userId;
@@ -242,6 +286,38 @@ public class VmVehicle {
 		this.updateSign = updateSign;
 	}
 
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public Long getPlazaId() {
+		return plazaId;
+	}
+
+	public void setPlazaId(Long plazaId) {
+		this.plazaId = plazaId;
+	}
+
+	public String getPlazaName() {
+		return plazaName;
+	}
+
+	public void setPlazaName(String plazaName) {
+		this.plazaName = plazaName;
+	}
+
+
+	public String getShiftDateStr() {
+		return DateUtil.formatDate(this.shiftDate,"yyyy-MM-dd HH:mm:ss");
+	}
+
+	public void setShiftDateStr(String shiftDateStr) {
+		this.shiftDateStr = shiftDateStr;
+	}
 
 	@Override
 	public String toString() {

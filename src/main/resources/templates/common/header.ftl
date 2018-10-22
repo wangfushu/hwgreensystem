@@ -16,3 +16,4 @@
     <link href="/global/bootstrap/css/animate.css" rel="stylesheet">
     <link href="/global/bootstrap/css/plugins/chosen/chosen.css" rel="stylesheet">
     <link href="/global/bootstrap/css/style.css?v=4.1.0" rel="stylesheet">
+    <#--select-->

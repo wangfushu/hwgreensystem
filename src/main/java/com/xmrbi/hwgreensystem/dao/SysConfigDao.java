@@ -12,4 +12,6 @@ import java.util.List;
 public interface SysConfigDao extends BaseDao<SysConfig, SysConfigPK> {
 
     List<SysConfig> findByCfConfigNameOrderByCfConfigValueAsc(String configName);
+
+    SysConfig findByCfConfigNameAndAndCfConfigValue(String configName,String configValue);
 }
